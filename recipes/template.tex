@@ -1,0 +1,37 @@
+%------------------------------------------
+% information doc
+\Title{}{}%Second parameter will be put between parentheses and in a smaller font
+\CookingTime{}
+\PrepTime{}
+\CookingTempe{}
+\TypeCooking{}
+\NbPerson{}
+\Image{0 0 500 400}{images/placeholder.png}
+%------------------------------------------
+
+\begin{ingredient}
+\begin{tabularx}{\textwidth} { 
+  >{\raggedright\arraybackslash}X 
+  >{\raggedright\arraybackslash}X}
+ quantity & ingredient\\
+\end{tabularx}
+\rule{\textwidth}{1pt}
+\vspace{0.25cm}
+\underline{Sub-preparation:}
+\begin{tabularx}{0.8\textwidth} { 
+  >{\raggedright\arraybackslash}X 
+  >{\raggedright\arraybackslash}X}
+  quantity & ingredient\\
+ \end{tabularx}
+
+\end{ingredient} %no space with \begin{recipe}
+\begin{recipe}
+\substep[Subpreparation Title]{step1}%without the title adds a step to the current subpreparation, the subpreparation has a number included in the step list
+\step{Step 1}
+\end{recipe}
+
+\begin{notes}
+\begin{itemize}
+    \item placeholder
+\end{itemize}
+\end{notes}	

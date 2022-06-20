@@ -1,0 +1,66 @@
+\makeatletter
+\newcommand{\PrepTime}[1]{\def\@PrepTime{#1\xspace}
+\def\PrepTimeb{#1}}
+\newcommand{\CookingTime}[1]{\def\@CookingTime{#1\xspace}}
+\newcommand{\CookingTempe}[1]{\def\@CookingTempe{#1}}
+\newcommand{\TypeCooking}[1]{\def\@TypeCooking{#1}}
+\newcommand{\NbPerson}[1]{\def\@NbPerson{#1\xspace}}
+\newcommand{\Image}[2]{\def\@ImageDim{#1} \def\@ImagePath{#2}}
+\newcommand{\Title}[2]{\def\@MainTitle{#1} \def\@SubTitle{#2}} 
+\def\maketitle{%
+
+\vspace{0cm}
+\begin{center}
+{\Huge \@MainTitle} {\Large (\@SubTitle)}
+\end{center}
+}
+
+\newenvironment{ingredient}
+  {\noindent\begin{minipage}[t]{0.35\linewidth}
+  \noindent\begingroup\edef\x{\endgroup\noexpand\includegraphics[width=1\linewidth,height=5.5cm,clip,viewport=\@ImageDim]{\@ImagePath}}\x
+  
+  \def\FrameCommand{\fboxsep=\FrameSep\fcolorbox{black}{white}}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore}\begin{footnotesize}\noindent\underline{\textbf{{\normalsize Ingredienti (\@NbPerson persone):}}}\vspace{0.25 cm}}
+  {\end{footnotesize}\endMakeFramed
+  
+\noindent
+    \noindent\vspace{0.5cm} Tempo di Preparazione: \@PrepTime min
+    
+    \noindent\vspace{0.5cm} Cottura: \@CookingTime min -- \@CookingTempe°
+    
+    \noindent\vspace{0.5cm} Tipo di supporto: \@TypeCooking
+    \end{minipage}\hspace{0.02\linewidth}}
+
+
+\newenvironment{recipe}
+{\begin{minipage}[t]{0.62\linewidth}
+\vspace{-5cm}
+\maketitle}
+{\end{minipage}}
+\makeatother
+
+\newenvironment{notes}
+{\vfill\def\FrameCommand{\fboxsep=\FrameSep\fcolorbox{black}{white}}%
+\MakeFramed {\advance\hsize-\width \FrameRestore}
+\noindent\underline{\textbf{Notes and tips:}}%
+
+\vspace{0.25cm}
+\noindent\hspace{-0.15cm}}
+{\endMakeFramed}
+  
+  
+\newcommand{\step}[1]{\ifthenelse{\value{step}=0}{\noindent{\large \underline{\textbf{Preparation:}}}\vspace{0.3cm}
+
+}{}
+\noindent\stepcounter{step}\setcounter{substep}{0}\the\value{step}. #1\vspace{0.3cm}
+
+} 
+
+\newcommand{\substep}[2][1]{\ifthenelse{\value{substep}=0}{\noindent\stepcounter{step}\the\value{step}. \underline{\textbf{#1:}}\vspace{0.3cm}
+
+}{}
+\hspace{0.05\linewidth}\begin{minipage}{0.948\linewidth}
+\noindent\stepcounter{substep}\textbf{\roman{substep}.} #2\vspace{0.5cm}
+\end{minipage}
+
+}   
